@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.db;
 
 public class ConfigDB {
     protected String hostBD = "localhost";
