@@ -21,5 +21,4 @@ public class OutData {
         stage.setScene(new Scene(root));
         stage.showAndWait();
     }
-
 }
