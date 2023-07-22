@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="OutDta" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #5F9EA0;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.controllers.OutDataController">
+    <AnchorPane layoutX="-7.0" layoutY="127.0" prefHeight="279.0" prefWidth="706.0" style="-fx-background-color: #F0F8FF;">
+        <TableView fx:id="TableView" layoutX="20.0" mouseTransparent="true" prefHeight="300" prefWidth="683.0">
+            <columns>
+                <TableColumn fx:id="TableColumId" minWidth="0.0" prefWidth="86.39999079704285" text="id" />
+                <TableColumn fx:id="TableColumData" minWidth="0.0" prefWidth="184.8000030517578" text="data" />
+                <TableColumn fx:id="TableColumSite" minWidth="0.0" prefWidth="192.800048828125" text="site" />
+                <TableColumn fx:id="TableDataPrice" minWidth="0.0" prefWidth="239.199951171875" text="price" />
+            </columns>
+        </TableView>
+    </AnchorPane>
+</AnchorPane>

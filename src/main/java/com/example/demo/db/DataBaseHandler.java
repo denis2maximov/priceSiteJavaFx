@@ -1,7 +1,12 @@
 package com.example.demo.db;
 
-import java.io.PrintStream;
+import com.example.demo.logic.Parse;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DataBaseHandler extends ConfigDB {
     Connection dbConnection;
@@ -33,36 +38,42 @@ public class DataBaseHandler extends ConfigDB {
         }
     }
 
-    public void getAllLines() {
+    public List<Parse> getAllLines() {
         String select = "SELECT " + "* " + "FROM " + Const.PARSE_TABLE;
-        try {
-            PreparedStatement preparedStatement = getDbConnection().prepareStatement(select);
-          //  preparedStatement.setInt(1, maxPrice);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            while(resultSet.next()){
-
-                Integer id = resultSet.getInt("id");
-                String data = resultSet.getString("data");
-                String site = resultSet.getString("site");
-                String price = resultSet.getString("price");
-
-                System.out.println(id + " " + data + " " + site + " " + price);
+        ObservableList<Parse> parses = FXCollections.observableArrayList();
+        List<Parse> parsesOut = new ArrayList<>();
+        try (PreparedStatement preparedStatement = getDbConnection().prepareStatement(select);
+                         ResultSet resultSet = preparedStatement.executeQuery()){
+//            PreparedStatement preparedStatement = getDbConnection().prepareStatement(select);
+//            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                parses.add(buildeParse(resultSet));
             }
 
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+            parsesOut.addAll(parses);
+           // preparedStatement.close();
+           // preparedStatement.executeUpdate();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+        return parsesOut;
     }
+
+    private Parse buildeParse(ResultSet resultSet) throws SQLException {
+        return new Parse(
+                resultSet.getInt("id"),
+                resultSet.getString("data"),
+                resultSet.getString("site"),
+                resultSet.getString("price")
+                 );
+    }
+
     public void cleanDataBase () {
         String delete = "DELETE " + "FROM " + Const.PARSE_TABLE;
         try {
             PreparedStatement preparedStatement = getDbConnection().prepareStatement(delete);
             preparedStatement.executeUpdate();
 
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

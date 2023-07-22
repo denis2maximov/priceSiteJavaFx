@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.example.demo.logic.ParseConfig;
+import com.example.demo.view.SearchView;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -38,20 +39,21 @@ public class HelloController {
 
         });
         buttonGoSearch.setOnAction(event -> {
-            buttonStartParse.getScene().getWindow().hide();
+            buttonGoSearch.getScene().getWindow().hide();
 
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/com/example/demo/search.fxml"));
-            try {
-                loader.load();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            Parent root = loader.getRoot();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.showAndWait();
-
+//            FXMLLoader loader = new FXMLLoader();
+//            loader.setLocation(getClass().getResource("/com/example/demo/search.fxml"));
+//            try {
+//                loader.load();
+//            } catch (IOException e) {
+//                throw new RuntimeException(e);
+//            }
+//            Parent root = loader.getRoot();
+//            Stage stage = new Stage();
+//            stage.setScene(new Scene(root));
+//            stage.showAndWait();
+            SearchView searchView = new SearchView();
+            searchView.start();
 
         });
     }

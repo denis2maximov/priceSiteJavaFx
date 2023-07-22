@@ -14,4 +14,6 @@ module com.example.demo {
     opens com.example.demo.db to javafx.fxml;
     exports com.example.demo.logic;
     opens com.example.demo.logic to javafx.fxml;
+    exports com.example.demo.view;
+    opens com.example.demo.view to javafx.fxml;
 }
