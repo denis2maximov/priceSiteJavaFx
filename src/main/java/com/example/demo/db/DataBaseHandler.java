@@ -23,7 +23,7 @@ public class DataBaseHandler extends ConfigDB {
                 + Const.PARSE_SITE + "," + Const.PARSE_PRICE + ")"
                 + "VALUES(?,?,?)";
         try {
-            PreparedStatement preparedStatement = null;
+            PreparedStatement preparedStatement;
             try {
                 preparedStatement = getDbConnection().prepareStatement(insert);
             } catch (Exception e) {

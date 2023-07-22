@@ -12,12 +12,6 @@ import java.util.ResourceBundle;
 
 public class HelloController {
     @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
     private Button buttonGoSearch;
 
     @FXML

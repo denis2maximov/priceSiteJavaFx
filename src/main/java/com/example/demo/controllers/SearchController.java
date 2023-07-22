@@ -13,23 +13,14 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class SearchController implements Initializable {
-    @FXML
-    private TableColumn<Parse, String> TableColumData;
-
-    @FXML
-    private ResourceBundle resources;
 
     @FXML
     private Button buttonDeleteAll;
-
-    @FXML
-    private URL location;
 
     @FXML
     private Button buttonGoStartSearch;
