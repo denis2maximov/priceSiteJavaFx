@@ -6,7 +6,6 @@ import com.example.demo.view.OutData;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
