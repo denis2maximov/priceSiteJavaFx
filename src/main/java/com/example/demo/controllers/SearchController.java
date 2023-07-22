@@ -12,6 +12,8 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -24,7 +26,7 @@ public class SearchController implements Initializable {
     private ResourceBundle resources;
 
     @FXML
-    private Button buttonDeliteAll;
+    private Button buttonDeleteAll;
 
     @FXML
     private URL location;
@@ -35,77 +37,15 @@ public class SearchController implements Initializable {
     @FXML
     private Button buttonGoStartSearchOutFile;
 
-    @FXML
-//    void initialize() {
-//        buttonGoStartSearch.setOnAction(event -> {
-//            buttonGoStartSearch.getScene().getWindow().hide();
-//
-//            FXMLLoader loader = new FXMLLoader();
-//            loader.setLocation(getClass().getResource("/com/example/demo/outDB.fxml"));
-//            try {
-//                loader.load();
-//            } catch (IOException e) {
-//                throw new RuntimeException(e);
-//            }
-//            Parent root = loader.getRoot();
-//            Stage stage = new Stage();
-//            stage.setScene(new Scene(root));
-//            stage.showAndWait();
-//
-//            });
-//
-//      buttonDeliteAll.setOnAction(event -> {
-//          DataBaseHandler dataBaseHandler = new DataBaseHandler();
-//          dataBaseHandler.cleanDataBase();
-//      });
-//
-//      buttonGoStartSearchOutFile.setOnAction(event -> {
-//          DataBaseHandler dataBaseHandler = new DataBaseHandler();
-//          List<Parse> list = new ArrayList<>(dataBaseHandler.getAllLines());
-//          try (BufferedWriter out = new BufferedWriter(
-//                  new FileWriter("data/outdated.txt"))){
-//              for (Parse parse : list) {
-//                  out.write(parse.getId());
-//                  out.write(" ");
-//                  out.write(parse.getData());
-//                  out.write(" ");
-//                  out.write(parse.getSite());
-//                  out.write(" ");
-//                  out.write(parse.getPrice());
-//                  out.write("\n");
-//                  }
-//              } catch (IOException e) {
-//              throw new RuntimeException(e);
-//          }
-//      });
-//    }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        {
             buttonGoStartSearch.setOnAction(event -> {
                 buttonGoStartSearch.getScene().getWindow().hide();
-
-//                FXMLLoader loader = new FXMLLoader();
-//                loader.setLocation(getClass().getResource("/com/example/demo/outDB.fxml"));
-//                try {
-//                    loader.load();
-//                } catch (IOException e) {
-//                    throw new RuntimeException(e);
-//                }
-//                Parent root = loader.getRoot();
-//                Stage stage = new Stage();
-//                stage.setScene(new Scene(root));
-//                stage.showAndWait();
                   OutData outData  = new OutData();
-                try {
                     outData.start();
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
             });
 
-            buttonDeliteAll.setOnAction(event -> {
+            buttonDeleteAll.setOnAction(event -> {
                 DataBaseHandler dataBaseHandler = new DataBaseHandler();
                 dataBaseHandler.cleanDataBase();
             });
@@ -114,9 +54,9 @@ public class SearchController implements Initializable {
                 DataBaseHandler dataBaseHandler = new DataBaseHandler();
                 List<Parse> list = new ArrayList<>(dataBaseHandler.getAllLines());
                 try (BufferedWriter out = new BufferedWriter(
-                        new FileWriter("data/outdated.txt"))) {
+                        new FileWriter("data/outdated.txt", Charset.defaultCharset()))) {
                     for (Parse parse : list) {
-                        out.write(parse.getId());
+                        out.write(Integer.toString(parse.getId()));
                         out.write(" ");
                         out.write(parse.getData());
                         out.write(" ");
@@ -131,4 +71,3 @@ public class SearchController implements Initializable {
             });
         }
     }
-}

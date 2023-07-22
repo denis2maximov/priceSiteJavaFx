@@ -15,7 +15,7 @@ import static org.jsoup.Jsoup.parse;
 
 public class ParseConfig {
 
-    public static void pageParseDiapus() throws IOException, ClassNotFoundException {
+    public static void pageParseDiapuls() throws IOException, ClassNotFoundException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String formatDateTime = LocalDateTime.now().format(formatter);
         String url = "https://diapuls.ru/product/test-poloski-ime-dc-50/";

@@ -1,17 +1,13 @@
 package com.example.demo.controllers;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-
 import com.example.demo.logic.ParseConfig;
 import com.example.demo.view.SearchView;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 
 public class HelloController {
@@ -30,7 +26,7 @@ public class HelloController {
     void initialize() {
         buttonStartParse.setOnAction(event -> {
             try {
-                ParseConfig.pageParseDiapus();
+                ParseConfig.pageParseDiapuls();
                 ParseConfig.pageParseTestpoloska();
                 ParseConfig.pageParseMedMag();
             } catch (IOException | ClassNotFoundException e) {
@@ -40,18 +36,6 @@ public class HelloController {
         });
         buttonGoSearch.setOnAction(event -> {
             buttonGoSearch.getScene().getWindow().hide();
-
-//            FXMLLoader loader = new FXMLLoader();
-//            loader.setLocation(getClass().getResource("/com/example/demo/search.fxml"));
-//            try {
-//                loader.load();
-//            } catch (IOException e) {
-//                throw new RuntimeException(e);
-//            }
-//            Parent root = loader.getRoot();
-//            Stage stage = new Stage();
-//            stage.setScene(new Scene(root));
-//            stage.showAndWait();
             SearchView searchView = new SearchView();
             searchView.start();
 

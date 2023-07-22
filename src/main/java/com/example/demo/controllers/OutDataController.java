@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import com.example.demo.db.DataBaseHandler;
 import com.example.demo.logic.Parse;
 import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -21,7 +22,7 @@ import javafx.scene.layout.AnchorPane;
 public class OutDataController implements Initializable {
     private static javafx.collections.FXCollections FXCollections;
     private static final ObservableList<Parse> parseObservableListData
-            = FXCollections.observableArrayList();
+            = javafx.collections.FXCollections.observableArrayList();
 
     @FXML
     private ResourceBundle resources;
@@ -55,25 +56,22 @@ public class OutDataController implements Initializable {
        TableColumData.setCellValueFactory(new PropertyValueFactory<>("data"));
        TableColumSite.setCellValueFactory(new PropertyValueFactory<>("site"));
        TableDataPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
-
        TableView.setItems(parseObservableListData);
-
-
     }
 
     private void initData() {
         DataBaseHandler out = new DataBaseHandler();
         var parses = out.getAllLines();
         for (Parse parse : parses){
-    parseObservableListData.add(new Parse(
-    parse.getId(),
-    parse.getData(),
-    parse.getSite(),
-    parse.getPrice()
-    )
+            parseObservableListData.add(new Parse(
+                   parse.getId(),
+                   parse.getData(),
+                   parse.getSite(),
+                   parse.getPrice()
+            )
     );
 }
-        }
+      }
 }
 
 

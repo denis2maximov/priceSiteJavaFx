@@ -44,15 +44,10 @@ public class DataBaseHandler extends ConfigDB {
         List<Parse> parsesOut = new ArrayList<>();
         try (PreparedStatement preparedStatement = getDbConnection().prepareStatement(select);
                          ResultSet resultSet = preparedStatement.executeQuery()){
-//            PreparedStatement preparedStatement = getDbConnection().prepareStatement(select);
-//            ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 parses.add(buildeParse(resultSet));
             }
-
             parsesOut.addAll(parses);
-           // preparedStatement.close();
-           // preparedStatement.executeUpdate();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -73,7 +68,6 @@ public class DataBaseHandler extends ConfigDB {
         try {
             PreparedStatement preparedStatement = getDbConnection().prepareStatement(delete);
             preparedStatement.executeUpdate();
-
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
